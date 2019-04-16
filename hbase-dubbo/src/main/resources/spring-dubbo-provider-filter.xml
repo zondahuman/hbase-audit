@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="businessService-provider"/>
+    <!--<dubbo:registry address="multicast://224.5.6.7:1234"/>-->
+    <dubbo:registry address="N/A"/>
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:service interface="com.abin.lee.hbase.dubbo.facade.BusinessService" ref="businessService" />
+    <bean id="businessService" class="com.abin.lee.hbase.dubbo.facade.impl.BusinessServiceImpl"/>
+
+    <!--<dubbo:reference id="demoService" interface="com.abin.lee.hbase.dubbo.facade.DemoService"/>-->
+
+    <dubbo:provider filter="sentinel.dubbo.provider.filter" />
+
+</beans>

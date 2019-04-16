@@ -1,0 +1,10 @@
+
+https://github.com/dubbo/dubbo-sentinel-support
+
+
+
+
+
+添加参数
+-Djava.net.preferIPv4Stack=true
+

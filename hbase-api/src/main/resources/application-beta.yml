@@ -1,0 +1,32 @@
+# port
+server:
+        port: 8222
+spring:
+        application:
+                      name: hbase-audit
+
+hbase:
+      zookeeper:
+                quorum: localhost
+                clientPort: 2181
+
+
+
+logging:
+        config: classpath:log4j2.xml
+        path: /Users/logger/logs/hbase-audit
+        file: audit.log
+        level:
+              root: INFO
+
+log:
+     path: /Users/logger/logs/hbase-audit
+     level: INFO
+     gather: /Users/logger/logs/hbase-audit-gather
+
+
+
+
+
+
+

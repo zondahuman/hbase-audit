@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration> 
+
+        <!-- zookeeper集群的URL配置  -->
+    <property>
+        <name>hbase.zookeeper.quorum</name>
+        <value>10.179.89.106</value>
+    </property>
+     
+        <!-- 客户端连接端口 -->
+       
+    <property>
+        <name>hbase.zookeeper.property.clientPort</name>
+        <value>2181</value>
+    </property>
+        <!-- 重试等待时间 -->
+    <property>
+        <name>hbase.client.pause</name>
+        <value>50</value>
+    </property>
+        <!-- 失败时重试次数 -->
+    <property>
+        <name>hbase.client.retries.number</name>
+        <value>3</value>   
+    </property>
+        <!-- RPC请求的超时时间。如果某次RPC时间超过该值，客户端就会主动关闭socket -->
+       
+    <property>
+        <name>hbase.rpc.timeout</name>
+        <value>2000</value>
+    </property>
+        <!-- HBase客户端发起一次数据操作直至得到响应之间总的超时时间 -->
+       
+    <property>
+        <name>hbase.client.operation.timeout</name>
+        <value>3000</value>
+    </property>
+        <!-- 该参数是表示HBase客户端发起一次scan操作的rpc调用至得到响应之间总的超时时间 -->
+       
+    <property> 
+        <name>hbase.client.scanner.timeout.period</name>
+        <value>10000</value>
+    </property>
+
+
+</configuration>
+
+
