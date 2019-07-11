@@ -3,8 +3,6 @@ package com.abin.lee.hbase.audit.api.test;
 
 import com.abin.lee.hbase.audit.common.util.DateUtil;
 import com.abin.lee.hbase.audit.common.util.HttpClientUtil;
-import com.abin.lee.hbase.audit.common.util.JsonUtil;
-import com.google.common.collect.Maps;
 import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -17,13 +15,13 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by lee on 2018/10/15.
  */
 public class FindByConditionTest {
-    private static final String httpUrl = "http://localhost:8111/audit/findByCondition";
+    private static final String httpUrl = "http://localhost:8111/verify/findByCondition";
+//    private static final String httpUrl = "http://localhost:8111/audit/findByCondition";
 
 
     @Test
@@ -34,13 +32,14 @@ public class FindByConditionTest {
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
             String tableName = "SEC_TEST:AUDIT_TEST";
             String columnFamily = "cf";
-            String driverId = "1234567890";
+            String driverId = "1234567892";
 //            String driverId = (int)(Math.random()*10000)+"";
             String logStatus = "1";
             String logType = "2";
-//            String startTimeStamp = DateUtil.getSomeDate(-20);
-            String startTimeStamp = DateUtil.getYMDHMSTime();
-            String endTimeStamp = DateUtil.getSomeDate(-20);
+            String startTimeStamp = DateUtil.getSomeDate(-20);
+//            String startTimeStamp = DateUtil.getYMDHMSTime();
+//            String endTimeStamp = DateUtil.getSomeDate(-20);
+            String endTimeStamp = DateUtil.getYMDHMSTime();
 
             nvps.add(new BasicNameValuePair("tableName", tableName));
             nvps.add(new BasicNameValuePair("columnFamily", columnFamily));

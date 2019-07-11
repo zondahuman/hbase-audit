@@ -1,6 +1,7 @@
 package com.abin.lee.hbase.audit.api.service;
 
 import com.abin.lee.hbase.audit.api.entity.UserBean;
+import com.abin.lee.hbase.audit.api.mapper.AuditMapper;
 import com.abin.lee.hbase.audit.api.structure.AuditStructure;
 import com.abin.lee.hbase.audit.common.logger.LogUtil;
 import com.abin.lee.hbase.audit.common.util.DateUtil;
@@ -27,7 +28,7 @@ import java.util.Map;
  * https://www.cnblogs.com/whyhappy/p/6568053.html
  */
 @Service
-public class HbaseVerifyService {
+public class UserAuditService {
 
     @Resource
     HbaseTemplate hbaseTemplate;
@@ -128,15 +129,7 @@ public class HbaseVerifyService {
         byte[] startRow = Bytes.toBytes(getRowKey(driverId, logStatus, logType, DateUtil.getYMDHMSTime(endTimeStamp).getTime()));
         byte[] stopRow = Bytes.toBytes(getRowKey(driverId, logStatus, logType, DateUtil.getYMDHMSTime(startTimeStamp).getTime()));
         Scan scan = new Scan(startRow, stopRow);
-        return hbaseTemplate.find(tableName, scan, new RowMapper<UserBean>() {
-            @Override
-            public UserBean mapRow(Result result, int rowNum) throws Exception {
-                return new UserBean(Bytes.toString(result.getValue(AuditStructure.columnFamily, AuditStructure.auditDriverId)),
-                        Bytes.toString(result.getValue(AuditStructure.columnFamily, AuditStructure.auditLogStatus)),
-                        Bytes.toString(result.getValue(AuditStructure.columnFamily, AuditStructure.auditLogType)),
-                        Bytes.toString(result.getValue(AuditStructure.columnFamily, AuditStructure.auditTimestamp)));
-            }
-        });
+        return hbaseTemplate.find(tableName, scan, new AuditMapper());
     }
 
 

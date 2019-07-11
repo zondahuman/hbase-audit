@@ -22,13 +22,21 @@
         <jdk.version>1.8</jdk.version>
         <org.apache.logging.log4j.version>2.10.0</org.apache.logging.log4j.version>
         <jsckson.version>2.9.4</jsckson.version>
-        <spring.boot.version>2.0.0.RELEASE</spring.boot.version>
-        <!--<spring.boot.version>1.5.10.RELEASE</spring.boot.version>-->
+        <spring.boot.version>2.1.6.RELEASE</spring.boot.version>
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <!-- Import dependency management from Spring Boot -->
                 <groupId>org.springframework.boot</groupId>
