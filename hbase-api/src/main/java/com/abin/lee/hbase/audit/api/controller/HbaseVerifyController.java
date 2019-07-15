@@ -1,7 +1,7 @@
 package com.abin.lee.hbase.audit.api.controller;
 
 import com.abin.lee.hbase.audit.api.entity.UserBean;
-import com.abin.lee.hbase.audit.api.service.HbaseAuditService;
+import com.abin.lee.hbase.audit.api.service.HbaseVerifyService;
 import com.abin.lee.hbase.audit.common.util.JsonUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.slf4j.Logger;
@@ -19,15 +19,17 @@ import java.util.Map;
  * Created by lee on 2019/1/11.
  */
 @Controller
-@RequestMapping("/audit")
-public class HbaseAuditController {
+@RequestMapping("/verify")
+public class HbaseVerifyController {
 
 
-    protected final static Logger logger = LoggerFactory.getLogger(HbaseAuditController.class);
+    protected final static Logger logger = LoggerFactory.getLogger(HbaseVerifyController.class);
     protected final static Logger common = LoggerFactory.getLogger("common");
 
+    //    @Autowired
+//    HbaseAuditService hbaseAuditService;
     @Autowired
-    HbaseAuditService hbaseAuditService;
+    HbaseVerifyService hbaseVerifyService;
 
 
     @RequestMapping(value = "/addRow", method = {RequestMethod.POST, RequestMethod.GET})
@@ -38,12 +40,12 @@ public class HbaseAuditController {
         try {
             Map<String, String> paramsInput = JsonUtil.decodeJson(params, new TypeReference<Map<String, String>>() {
             });
-            this.hbaseAuditService.addRow(tableName, columnFamily, driverId, logStatus, logType, timeStamp, paramsInput);
+            this.hbaseVerifyService.addRow(tableName, columnFamily, driverId, logStatus, logType, timeStamp, paramsInput);
         } catch (Exception e) {
             logger.error("e={}", e);
             return "FAILURE";
         }
-        common.info("addRow--tableName=" + tableName + ",columnFamily=" + columnFamily + ",driverId=" + driverId + ",logStatus=" + logStatus + ",logType=" + logType + ",timeStamp=" + timeStamp + ",params=" + params + ",cost=" + (System.currentTimeMillis() - start));
+        common.info("addRow--tableName=" + tableName + ",columnFamily=" + columnFamily + ",driverId=" + driverId + ",logStatus=" + logStatus + ",logType=" + logType + ",timeStamp=" + timeStamp + ",params=" + params +",cost="+ (System.currentTimeMillis() - start));
         return "SUCCESS";
     }
 
@@ -56,7 +58,7 @@ public class HbaseAuditController {
         try {
             Map<String, String> paramsInput = JsonUtil.decodeJson(params, new TypeReference<Map<String, String>>() {
             });
-            this.hbaseAuditService.insertRow(tableName, columnFamily, driverId, logStatus, logType, timeStamp, paramsInput);
+            this.hbaseVerifyService.insertRow(tableName, columnFamily, driverId, logStatus, logType, timeStamp, paramsInput);
         } catch (Exception e) {
             logger.error("e={}", e);
             return "FAILURE";
@@ -89,7 +91,7 @@ public class HbaseAuditController {
         long start = System.currentTimeMillis();
         List<UserBean> list = null;
         try {
-            list = this.hbaseAuditService.findAll(tableName, columnFamily);
+            list = this.hbaseVerifyService.findAll(tableName, columnFamily);
         } catch (Exception e) {
             logger.error("e={}", e);
         }
@@ -105,7 +107,7 @@ public class HbaseAuditController {
         long start = System.currentTimeMillis();
         UserBean bean = null;
         try {
-            bean = this.hbaseAuditService.findOne(tableName, rowName);
+            bean = this.hbaseVerifyService.findOne(tableName, rowName);
         } catch (Exception e) {
             logger.error("e={}", e);
         }
@@ -121,7 +123,7 @@ public class HbaseAuditController {
         long start = System.currentTimeMillis();
         List<UserBean> list = null;
         try {
-            list = this.hbaseAuditService.findByCondition(tableName, driverId, logStatus, logType, startTimeStamp, endTimeStamp);
+            list = this.hbaseVerifyService.findByCondition(tableName, driverId, logStatus, logType, startTimeStamp, endTimeStamp);
         } catch (Exception e) {
             logger.error("e={}", e);
         }
