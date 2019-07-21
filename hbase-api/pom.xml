@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hbase-api</artifactId>
-
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
@@ -116,7 +116,8 @@
         </resources>
 
         <filters>
-            <filter>src/main/resources/application-${activatedProperties}.yml</filter>
+            <filter>src/main/resources/bootstrap-${activatedProperties}.yml</filter>
+            <!--<filter>src/main/resources/application-${activatedProperties}.yml</filter>-->
         </filters>
 
         <plugins>

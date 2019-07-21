@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 public class TrafficLimitService {
     private RateLimiter rateLimiter = null;
 
-
     @PostConstruct
     public void init() {
         rateLimiter = RateLimiter.create(10.0);
@@ -35,9 +34,11 @@ public class TrafficLimitService {
     }
 
 
+
     public void setLimit(String param) {
         rateLimiter = RateLimiter.create(Doubles.tryParse(param));
     }
+
 
 
     public Double getLimit() {
@@ -52,6 +53,8 @@ public class TrafficLimitService {
         trafficLimit.setLimit(10 + "");
         System.out.println(trafficLimit.getLimit());
     }
+
+
 
 
 }

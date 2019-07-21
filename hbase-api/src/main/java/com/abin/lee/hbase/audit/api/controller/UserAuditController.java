@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by lee on 2019/1/11.
  */
 @Controller
-@RequestMapping("/verify")
+@RequestMapping("/user")
 public class UserAuditController {
 
 

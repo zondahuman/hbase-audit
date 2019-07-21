@@ -11,6 +11,9 @@ public final class SentinelKey {
     public static final String degradeKey = "sentinel-flow-qps";
 
 
+    public static final String flowDegradeKey = "sentinel-flow-qps";
+
+
 
 
 

@@ -6,12 +6,12 @@ spring:
                       name: hbase-audit
 
 hbase:
-      zookeeper:
-                quorum: 10.179.89.106
-                clientPort: 2181
+       zookeeper:
+                  quorum: 10.179.89.106
+                  clientPort: 2181
 
 logging:
-        config: classpath:log4j2.xml
+        config: classpath:log4j2-spring.xml
         path: /Users/logger/logs/hbase-audit
         file: audit.log
         level:
