@@ -1,11 +1,12 @@
-package com.abin.lee.hbase.audit;
+package com.abin.lee.hbase.audit.hbase;
 
 import com.google.common.base.Preconditions;
 import org.apache.commons.codec.binary.StringUtils;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.hbase.util.MD5Hash;
+import org.junit.Test;
 
-public class RowKeyTest {
+public class RowKeyUtil {
 
     public static String getRowKey(String driverId, String logStatus, String logType, long timestamp) {
         Preconditions.checkNotNull(driverId, "driverId 不能为空");
@@ -46,5 +47,16 @@ public class RowKeyTest {
 
     }
 
+    @Test
+    public void test1() {
+        String driverId = "123456789";
+        String logStatus = "0";
+        String logType = "auditLogType";
+        long timestamp = System.currentTimeMillis();
+        long ts = Long.MAX_VALUE / 1000000 - timestamp;
+
+        String key = getSaltRowKey(driverId, logStatus, logType, timestamp);
+
+    }
 
 }
